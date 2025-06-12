@@ -33,9 +33,17 @@ def CommMonCat.coyonedaForget :
   NatIso.ofComponents (fun X ↦ NatIso.ofComponents (fun Y ↦ { hom f := ofHom f, inv f := f.hom })
     (fun _ ↦ rfl)) (fun _ ↦ rfl)
 
-/-- The coyoneda embedding of `Type` into `CommMonCat`-valued presheaves of commutative monoids. -/
+/-- The Hom bifunctor sending a type `X` and a commutative monoid `G` to the commutative monoid
+`X → G` with pointwise operations.
+
+This is also the coyoneda embedding of `Type` into `CommMonCat`-valued presheaves of commutative
+monoids. -/
 @[to_additive (attr := simps)
-"The coyoneda embedding of `Type` into `AddCommMonCat`-valued presheaves of commutative monoids."]
+"The Hom bifunctor sending a type `X` and a commutative monoid `G` to the commutative monoid
+`X → G` with pointwise operations.
+
+This is also the coyoneda embedding of `Type` into `AddCommMonCat`-valued presheaves of commutative
+monoids."]
 def CommMonCat.pi : (Type u)ᵒᵖ ⥤ CommMonCat.{u} ⥤ CommMonCat.{u} where
   obj X := { obj G := of <| X.unop → G
              map f := ofHom <| Pi.monoidHom fun i ↦ f.hom.comp <| Pi.evalMonoidHom _ i }

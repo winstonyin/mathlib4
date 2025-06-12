@@ -33,9 +33,17 @@ def CommGrp.coyonedaForget :
   NatIso.ofComponents (fun X ↦ NatIso.ofComponents (fun Y ↦ { hom f := ofHom f, inv f := f.hom })
     (fun _ ↦ rfl)) (fun _ ↦ rfl)
 
-/-- The coyoneda embedding of `Type` into `CommGrp`-valued presheaves of commutative groups. -/
+/-- The Hom bifunctor sending a type `X` and a commutative group `G` to the commutative group
+`X → G` with pointwise operations.
+
+This is also the coyoneda embedding of `Type` into `CommGrp`-valued presheaves of commutative
+groups. -/
 @[to_additive (attr := simps)
-"The coyoneda embedding of `Type` into `AddCommGrp`-valued presheaves of commutative groups."]
+"The Hom bifunctor sending a type `X` and a commutative group `G` to the commutative group
+`X → G` with pointwise operations.
+
+This is also the coyoneda embedding of `Type` into `AddCommGrp`-valued presheaves of commutative
+groups."]
 def CommGrp.pi : (Type u)ᵒᵖ ⥤ CommGrp.{u} ⥤ CommGrp.{u} where
   obj X := { obj G := of <| X.unop → G
              map f := ofHom <| Pi.monoidHom fun i ↦ f.hom.comp <| Pi.evalMonoidHom _ i }
