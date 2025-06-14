@@ -194,7 +194,8 @@ variable {M N₁ N₂ : Type*} [Monoid M] [CommMonoid N₁] [CommMonoid N₂]
 
 /-- The equivalence `(β →* γ) ≃ (α →* γ)` obtained by precomposition with
 a multiplicative equivalence `e : α ≃* β`. -/
-@[to_additive (attr := deprecated MulEquiv.monoidHomCongrLeftEquiv (since := "2025-05-26"))
+@[to_additive (attr := simps -isSimp,
+deprecated MulEquiv.monoidHomCongrLeftEquiv (since := "2025-05-26"))
 "The equivalence `(β →+ γ) ≃ (α →+ γ)` obtained by precomposition with
 an additive equivalence `e : α ≃+ β`."]
 def precompEquiv {α β : Type*} [Monoid α] [Monoid β] (e : α ≃* β) (γ : Type*) [Monoid γ] :
@@ -206,7 +207,8 @@ def precompEquiv {α β : Type*} [Monoid α] [Monoid β] (e : α ≃* β) (γ : 
 
 /-- The equivalence `(γ →* α) ≃ (γ →* β)` obtained by postcomposition with
 a multiplicative equivalence `e : α ≃* β`. -/
-@[to_additive (attr := deprecated MulEquiv.monoidHomCongrRightEquiv (since := "2025-05-26"))
+@[to_additive (attr := simps -isSimp,
+deprecated MulEquiv.monoidHomCongrRightEquiv (since := "2025-05-26"))
 "The equivalence `(γ →+ α) ≃ (γ →+ β)` obtained by postcomposition with
 an additive equivalence `e : α ≃+ β`."]
 def postcompEquiv {α β : Type*} [Monoid α] [Monoid β] (e : α ≃* β) (γ : Type*) [Monoid γ] :
