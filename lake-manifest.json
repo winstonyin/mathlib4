@@ -65,7 +65,7 @@
    "type": "git",
    "subDir": null,
    "scope": "leanprover-community",
-   "rev": "c8122b7128dee1ce75a477dd801b43bd33e1556b",
+   "rev": "a1550472a70b754b59d4cd19dd45741109a9beef",
    "name": "batteries",
    "manifestFile": "lake-manifest.json",
    "inputRev": "fgdorais-patch-6",
