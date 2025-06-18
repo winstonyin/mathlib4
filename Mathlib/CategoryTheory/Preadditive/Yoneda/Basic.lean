@@ -149,7 +149,6 @@ end
 
 /-- Coyoneda for a preadditive category and coyoneda for `AddCommGrp` agree. -/
 def preadditiveCoyonedaIsoAddCommGrpCoyoneda : preadditiveCoyoneda ≅ AddCommGrp.coyoneda :=
-  NatIso.ofComponents fun X ↦ NatIso.ofComponents fun Y ↦
-    AddEquiv.toAddCommGrpIso AddCommGrp.homAddEquiv
+  NatIso.ofComponents fun X ↦ NatIso.ofComponents fun Y ↦ AddCommGrp.homAddEquiv.toAddCommGrpIso
 
 end CategoryTheory
