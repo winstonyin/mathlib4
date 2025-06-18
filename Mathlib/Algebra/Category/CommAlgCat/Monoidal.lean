@@ -25,7 +25,7 @@ variable {R : Type u} [CommRing R] {A B C D : CommAlgCat.{u} R}
 
 variable (A B)
 
-/-- The explicit cocone with tensor products as the fibered product in `CommAlgCat`. -/
+/-- The explicit cocone with tensor products as the fibered coproduct in `CommAlgCat`. -/
 def binaryCofan : BinaryCofan A B := .mk (ofHom includeLeft) (ofHom <| includeRight (A := A))
 
 @[simp] lemma binaryCofan_inl : (binaryCofan A B).inl = ofHom includeLeft := rfl
