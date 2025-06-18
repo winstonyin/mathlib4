@@ -605,13 +605,10 @@ instance : EmbeddedG2 (g₂ R).toRootPairing where
   long := 0
   short := 2
   pairingIn_long_short := by
-    apply algebraMap_injective ℤ R
-    rw [algebraMap_pairingIn]
+    rw [← (algebraMap_injective ℤ R).eq_iff, algebraMap_pairingIn]
     simp [g₂, EmbeddedG2.perfectPairing, EmbeddedG2.allCocoeffs, EmbeddedG2.allCoeffs, pairing,
       root', Matrix.vecHead, Matrix.vecTail]
-  exists_value i j := by
-    use (g₂ ℤ).pairing i j
-    simp [g₂, pairing, root']
+  exists_value i j := ⟨(g₂ ℤ).pairing i j, by simp [g₂, pairing, root']⟩
   eq_or_eq_neg i j hij := by
     sorry
 
