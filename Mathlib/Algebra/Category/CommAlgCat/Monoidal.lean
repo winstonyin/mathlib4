@@ -43,7 +43,7 @@ def binaryCofanIsColimit : IsColimit (binaryCofan A B) :=
       refine liftEquiv.symm_apply_eq (y := ⟨⟨_, _⟩, fun _ _ ↦ .all _ _⟩).mp ?_
       exact Subtype.ext (Prod.ext congr(($hm₁).hom) congr(($hm₂).hom)))
 
-/-- The initial object of `CommAlgCat R` is `R` as an algebra over itself -/
+/-- The initial object of `CommAlgCat R` is `R` as an algebra over itself. -/
 def isInitialSelf : IsInitial (of R R) :=
   .ofUniqueHom (fun A ↦ ofHom (Algebra.ofId R A)) fun _ _ ↦ hom_ext (Algebra.ext_id _ _ _)
 
