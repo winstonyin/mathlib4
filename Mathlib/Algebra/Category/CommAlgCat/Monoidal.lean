@@ -67,10 +67,10 @@ variable {A B}
 @[simp] lemma tensorHom_hom (f : A ⟶ C) (g : B ⟶ D) : (f ⊗ₘ g).hom = map f.hom g.hom := rfl
 
 variable (C) in
-@[simp] lemma rightWhisker_hom (f : A ⟶ B) : (f ▷ C).hom = map f.hom (.id _ _) := rfl
+@[simp] lemma whiskerRight_hom (f : A ⟶ B) : (f ▷ C).hom = map f.hom (.id _ _) := rfl
 
 variable (C) in
-@[simp] lemma leftWhisker_hom (f : A ⟶ B) : (C ◁ f).hom = map (.id _ _) f.hom := rfl
+@[simp] lemma whiskerLeft_hom (f : A ⟶ B) : (C ◁ f).hom = map (.id _ _) f.hom := rfl
 
 variable (A B C) in
 @[simp] lemma associator_hom_hom : (α_ A B C).hom.hom = (assoc R R A B C).toAlgHom := rfl
@@ -102,8 +102,8 @@ instance : CartesianMonoidalCategory (CommAlgCat.{u} R)ᵒᵖ where
 
 variable {A B C D : (CommAlgCat.{u} R)ᵒᵖ}
 
-@[simp] lemma fst_unop_hom (A B : (CommAlgCat R)ᵒᵖ) : (fst A B).unop.hom = includeLeft := rfl
-@[simp] lemma snd_unop_hom (A B : (CommAlgCat R)ᵒᵖ) : (snd A B).unop.hom = includeRight := rfl
+@[simp] lemma fst_unop_hom (A B : (CommAlgCat.{u} R)ᵒᵖ) : (fst A B).unop.hom = includeLeft := rfl
+@[simp] lemma snd_unop_hom (A B : (CommAlgCat.{u} R)ᵒᵖ) : (snd A B).unop.hom = includeRight := rfl
 
 variable (A B) in
 @[simp] lemma toUnit_unop_hom : (toUnit A).unop.hom = Algebra.ofId R A.unop := rfl
