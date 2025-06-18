@@ -561,6 +561,7 @@ end EmbeddedG2
 section Concrete
 
 variable (R)
+variable [CharZero R]
 
 -- Probably not really the right lemma
 @[simp]
@@ -574,12 +575,8 @@ lemma baz {ι R : Type*} [AddGroupWithOne R] (f g : ι → ℤ) :
   map_comp_sub (Int.castAddHom R) f g
 
 open EmbeddedG2 in
-/-- A concrete model of the `𝔤₂` root system.
-
-TODO:
-* upgrade to `RootSystem` (easy)
-* write API, in particular `EmbeddedG2` instance -/
-def g₂ [CharZero R] : RootPairing (Fin 12) R (Fin 2 → R) (Fin 2 → R) where
+/-- A concrete model of the `𝔤₂` root system. -/
+def g₂ : RootSystem (Fin 12) R (Fin 2 → R) (Fin 2 → R) where
   __ := perfectPairing R
   root := .trans ⟨allCoeffs.get, by decide⟩ ⟨_, Int.cast_injective.comp_left⟩
   coroot := .trans ⟨allCocoeffs.get, by decide⟩ ⟨_, Int.cast_injective.comp_left⟩
@@ -599,6 +596,24 @@ def g₂ [CharZero R] : RootPairing (Fin 12) R (Fin 2 → R) (Fin 2 → R) where
       erw [← this] -- TODO Fix
       rfl
     fin_cases i <;> fin_cases j <;> decide
+  span_root_eq_top := by
+    sorry
+  span_coroot_eq_top := by
+    sorry
+
+instance : EmbeddedG2 (g₂ R).toRootPairing where
+  long := 0
+  short := 2
+  pairingIn_long_short := by
+    apply algebraMap_injective ℤ R
+    rw [algebraMap_pairingIn]
+    simp [g₂, EmbeddedG2.perfectPairing, EmbeddedG2.allCocoeffs, EmbeddedG2.allCoeffs, pairing,
+      root', Matrix.vecHead, Matrix.vecTail]
+  exists_value i j := by
+    use (g₂ ℤ).pairing i j
+    simp [g₂, pairing, root']
+  eq_or_eq_neg i j hij := by
+    sorry
 
 end Concrete
 
