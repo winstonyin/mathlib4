@@ -42,6 +42,9 @@ theorem lift_comp_one_right {A : C} {B : C} [Mon_Class B] (f : A ⟶ B) (g : A �
   have := lift f g ≫= mul_one B
   rwa [lift_whiskerLeft_assoc, lift_rightUnitor_hom] at this
 
+instance : IsMon_Hom η[M] where
+  mul_hom := by simp [toUnit_unique (ρ_ (𝟙_ C)).hom (λ_ (𝟙_ C)).hom]
+
 variable [BraidedCategory C]
 
 attribute [local simp] tensorObj.one_def tensorObj.mul_def
@@ -51,8 +54,7 @@ instance : IsMon_Hom (snd M N) where
 
 instance {f : M ⟶ N} {g : M ⟶ O} [IsMon_Hom f] [IsMon_Hom g] : IsMon_Hom (lift f g) where
   mul_hom := by ext <;> simp [← tensor_comp_assoc]
-instance [IsCommMon M] : IsMon_Hom η[M] where
-  mul_hom := by simp [toUnit_unique (ρ_ (𝟙_ C)).hom (λ_ (𝟙_ C)).hom]
+
 instance [IsCommMon M] : IsMon_Hom μ[M] where
   one_hom := by simp [toUnit_unique (ρ_ (𝟙_ C)).hom (λ_ (𝟙_ C)).hom]
 
