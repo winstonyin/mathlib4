@@ -25,6 +25,9 @@ namespace Mon_Class
 
 instance : IsMon_Hom (toUnit M) where
 
+instance : IsMon_Hom η[M] where
+  mul_hom := by simp [toUnit_unique (ρ_ (𝟙_ C)).hom (λ_ (𝟙_ C)).hom]
+
 theorem lift_lift_assoc {A : C} {B : C} [Mon_Class B] (f g h : A ⟶ B) :
     lift (lift f g ≫ μ) h ≫ μ = lift f (lift g h ≫ μ) ≫ μ := by
   have := lift (lift f g) h ≫= mul_assoc B
@@ -41,9 +44,6 @@ theorem lift_comp_one_right {A : C} {B : C} [Mon_Class B] (f : A ⟶ B) (g : A �
     lift f (g ≫ η) ≫ μ = f := by
   have := lift f g ≫= mul_one B
   rwa [lift_whiskerLeft_assoc, lift_rightUnitor_hom] at this
-
-instance : IsMon_Hom η[M] where
-  mul_hom := by simp [toUnit_unique (ρ_ (𝟙_ C)).hom (λ_ (𝟙_ C)).hom]
 
 variable [BraidedCategory C]
 
