@@ -424,7 +424,7 @@ variable (M) in
 @[to_additive "A monoid is sharp iff its only unit is `0`."]
 abbrev IsSharpMonoid := Subsingleton Mˣ
 
-@[to_additive] lemma IsSharp.of_isUnit (h : ∀ a : M, IsUnit a → a = 1) : IsSharpMonoid M :=
+@[to_additive] lemma IsSharpMonoid.of_isUnit (h : ∀ a : M, IsUnit a → a = 1) : IsSharpMonoid M :=
   subsingleton_of_forall_eq 1 fun u ↦ Units.ext <| h u u.isUnit
 
 variable [IsSharpMonoid M]

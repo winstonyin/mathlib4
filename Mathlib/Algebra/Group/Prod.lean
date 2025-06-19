@@ -602,8 +602,8 @@ lemma _root_.Prod.isUnit_iff {x : M × N} : IsUnit x ↔ IsUnit x.1 ∧ IsUnit x
 
 @[to_additive]
 instance _root_.Prod.instIsSharpMonoid [IsSharpMonoid M] [IsSharpMonoid N] :
-    IsSharpMonoid (M × N) where
-  eq_one_of_isUnit := by simp [Prod.isUnit_iff, Prod.ext_iff]
+    IsSharpMonoid (M × N) :=
+  .of_isUnit <| by simp [Prod.isUnit_iff, Prod.ext_iff]
 
 end
 
