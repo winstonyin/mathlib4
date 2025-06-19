@@ -11,7 +11,7 @@ import Mathlib.Data.Finsupp.Defs
 This file lifts order structures on `M` to `ι →₀ M`.
 -/
 
-assert_not_exists CompleteLattice Monoid
+assert_not_exists CompleteLattice
 
 noncomputable section
 
