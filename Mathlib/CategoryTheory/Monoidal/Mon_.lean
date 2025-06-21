@@ -22,7 +22,7 @@ the category of lax monoidal functors from the unit monoidal category to `C`.  W
 In this file, we also provide a simp set called `mon_tauto` whose goal is to prove all tautologies
 involving (commutative) monoid objects in a (braided) monoidal category.
 
-Please read the documentation in `Mathlib/CategoryTheory/Monoidal/Attr.lean` for full details.
+Please read the documentation in `Mathlib/Tactic/Attr/Register.lean` for full details.
 -/
 
 universe v₁ v₂ v₃ u₁ u₂ u₃ u
