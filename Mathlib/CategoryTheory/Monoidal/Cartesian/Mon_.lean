@@ -52,11 +52,18 @@ attribute [local simp] tensorObj.one_def tensorObj.mul_def
 instance : IsMon_Hom (fst M N) where
 instance : IsMon_Hom (snd M N) where
 
-instance {f : M ⟶ N} {g : M ⟶ O} [IsMon_Hom f] [IsMon_Hom g] : IsMon_Hom (lift f g) where
+instance foo {f : M ⟶ N} {g : M ⟶ O} [IsMon_Hom f] [IsMon_Hom g] : IsMon_Hom (lift f g) where
   mul_hom := by ext <;> simp [← tensor_comp_assoc]
 
 instance [IsCommMon M] : IsMon_Hom μ[M] where
   one_hom := by simp [toUnit_unique (ρ_ (𝟙_ C)).hom (λ_ (𝟙_ C)).hom]
+
+end Mon_Class
+
+namespace Mon_
+variable [BraidedCategory C]
+
+attribute [local simp] tensorObj.one_def tensorObj.mul_def
 
 instance : CartesianMonoidalCategory (Mon_ C) where
   isTerminalTensorUnit := .ofUniqueHom (fun M ↦ ⟨toUnit _⟩) fun M f ↦ by ext; exact toUnit_unique ..
@@ -74,7 +81,7 @@ variable {M N₁ N₂ : Mon_ C}
 @[simp] lemma fst_hom (M N : Mon_ C) : (fst M N).hom = fst M.X N.X := rfl
 @[simp] lemma snd_hom (M N : Mon_ C) : (snd M N).hom = snd M.X N.X := rfl
 
-end Mon_Class
+end Mon_
 
 variable (X) in
 /-- If `X` represents a presheaf of monoids, then `X` is a monoid object. -/
