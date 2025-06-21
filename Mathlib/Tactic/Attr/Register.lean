@@ -97,8 +97,8 @@ register_simp_attr enat_to_nat_coe
 /-- A simp set for the `pnat_to_nat` tactic. -/
 register_simp_attr pnat_to_nat_coe
 
-/-- `mon_tauto` is a simp set to prove all tautologies involving (commutative) monoid objects in a
-(braided) monoidal category.
+/-- `mon_tauto` is a simp set to prove about morphisms from some power of `M` to `M`, where `M` is a
+(commutative) monoid object in a (braided) monoidal category.
 
 THIS SIMP SET IS INCOMPATIBLE WITH THE STANDARD SIMP SET.
 If you want to use it, make sure to add the following to your simp call to disable the problematic
