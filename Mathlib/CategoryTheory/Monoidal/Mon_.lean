@@ -82,6 +82,12 @@ variable {C : Type*} [Category C] [MonoidalCategory C] {M W X X₁ X₂ X₃ Y Y
 
 attribute [mon_tauto] Category.id_comp Category.comp_id Category.assoc
   tensor_id tensorμ tensorδ
+  Iso.hom_inv_id Iso.hom_inv_id_assoc
+  Iso.inv_hom_id Iso.inv_hom_id_assoc
+  leftUnitor_tensor leftUnitor_tensor_assoc
+  rightUnitor_tensor rightUnitor_tensor_assoc
+  leftUnitor_tensor_inv leftUnitor_tensor_inv_assoc
+  rightUnitor_tensor_inv rightUnitor_tensor_inv_assoc
 
 @[mon_tauto] lemma whiskerLeft_def (X : C) (f : Y ⟶ Z) : X ◁ f = 𝟙 X ⊗ₘ f := by simp
 @[mon_tauto] lemma whiskerRight_def (f : X ⟶ Y) (Z : C) : f ▷ Z = f ⊗ₘ 𝟙 Z := by simp
