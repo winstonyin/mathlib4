@@ -83,12 +83,8 @@ variable {C : Type*} [Category C] [MonoidalCategory C] {M W X X₁ X₂ X₃ Y Y
 
 attribute [mon_tauto] Category.id_comp Category.comp_id Category.assoc
   tensor_id tensorμ tensorδ
-  Iso.hom_inv_id Iso.hom_inv_id_assoc
-  Iso.inv_hom_id Iso.inv_hom_id_assoc
-  leftUnitor_tensor leftUnitor_tensor_assoc
-  rightUnitor_tensor rightUnitor_tensor_assoc
-  leftUnitor_tensor_inv leftUnitor_tensor_inv_assoc
-  rightUnitor_tensor_inv rightUnitor_tensor_inv_assoc
+  leftUnitor_tensor leftUnitor_tensor_assoc leftUnitor_tensor_inv leftUnitor_tensor_inv_assoc
+  rightUnitor_tensor rightUnitor_tensor_assoc rightUnitor_tensor_inv rightUnitor_tensor_inv_assoc
 
 @[mon_tauto] lemma whiskerLeft_def (X : C) (f : Y ⟶ Z) : X ◁ f = 𝟙 X ⊗ₘ f := by simp
 @[mon_tauto] lemma whiskerRight_def (f : X ⟶ Y) (Z : C) : f ▷ Z = f ⊗ₘ 𝟙 Z := by simp
@@ -117,8 +113,14 @@ lemma associator_inv_comp_tensorHom_tensorHom_comp (f : X₁ ⟶ X₂) (g : Y₁
 lemma tensorHom_comp_tensorHom (f₁ : X₁ ⟶ X₂) (g₁ : Y₁ ⟶ Y₂) (f₂ : X₂ ⟶ X₃) (g₂ : Y₂ ⟶ Y₃) :
     (f₁ ⊗ₘ g₁) ≫ (f₂ ⊗ₘ g₂) = (f₁ ≫ f₂) ⊗ₘ (g₁ ≫ g₂) := by simp
 
-@[reassoc (attr := mon_tauto)] lemma one_mul : (η ⊗ₘ 𝟙 M) ≫ μ = (λ_ M).hom := by simp
-@[reassoc (attr := mon_tauto)] lemma mul_one : (𝟙 M ⊗ₘ η) ≫ μ = (ρ_ M).hom := by simp
+@[mon_tauto] lemma eq_one_mul : (λ_ M).hom = (η ⊗ₘ 𝟙 M) ≫ μ := by simp
+@[mon_tauto] lemma eq_mul_one : (ρ_ M).hom = (𝟙 M ⊗ₘ η) ≫ μ := by simp
+
+@[reassoc (attr := mon_tauto)] lemma leftUnitor_inv_one_tensor_mul (f : X₁ ⟶ M) :
+    (λ_ _).inv ≫ (η ⊗ₘ f) ≫ μ = f := by simp [tensorHom_def']
+
+@[reassoc (attr := mon_tauto)] lemma rightUnitor_inv_tensor_one_mul (f : X₁ ⟶ M) :
+    (ρ_ _).inv ≫ (f ⊗ₘ η) ≫ μ = f := by simp [tensorHom_def]
 
 @[reassoc (attr := mon_tauto)]
 lemma mul_assoc_hom (f : X ⟶ M) :
