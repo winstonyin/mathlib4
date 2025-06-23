@@ -27,8 +27,8 @@ variable [CommSemiring R] [AddCommMonoid A] [AddCommMonoid B] [Module R A] [Coal
   [Module R B] [Coalgebra R B] {a b : A}
 
 variable (R) in
-/-- A group-like element in a coalgebra is an element `a` such that $\eta a = 1$ and
-$\Delta a = a ⊗ a$. -/
+/-- A group-like element in a coalgebra is an element `a` such that $\eta(a) = 1$ and
+$\Delta(a) = a ⊗ a$. -/
 @[mk_iff]
 structure IsGroupLikeElem (a : A) where
   counit_eq_one : counit (R := R) a = 1
