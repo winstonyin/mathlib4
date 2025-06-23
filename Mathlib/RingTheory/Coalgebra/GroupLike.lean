@@ -35,7 +35,10 @@ structure IsGroupLikeElem (a : A) where
 
 attribute [simp] IsGroupLikeElem.counit_eq_one IsGroupLikeElem.comul_eq_tmul_self
 
-@[simp] lemma IsGroupLikeElem.ne_zero [Nontrivial R] (ha : IsGroupLikeElem R a) : a ≠ 0 := by
+@[simp] lemma isGroupLikeElem_self {r : R} : IsGroupLikeElem R r ↔ r = 1 := by
+  simp +contextual [isGroupLikeElem_iff]
+
+lemma IsGroupLikeElem.ne_zero [Nontrivial R] (ha : IsGroupLikeElem R a) : a ≠ 0 := by
   rintro rfl; simpa using ha.counit_eq_one
 
 /-- A coalgebra hom sends group-like elements to group-like elements. -/
