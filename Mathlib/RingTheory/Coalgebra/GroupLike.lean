@@ -27,11 +27,12 @@ variable [CommSemiring R] [AddCommMonoid A] [AddCommMonoid B] [Module R A] [Coal
   [Module R B] [Coalgebra R B] {a b : A}
 
 variable (R) in
-/-- A group-like element in a coalgebra is an element `a` such that `η a = 1` and `Δ a = a ⊗ₜ a`. -/
+/-- A group-like element in a coalgebra is an element `a` such that $\eta a = 1$ and
+$\Delta a = a ⊗ a$. -/
 @[mk_iff]
 structure IsGroupLikeElem (a : A) where
   counit_eq_one : counit (R := R) a = 1
-  comul_eq_tmul_self : comul (R := R) a = a ⊗ₜ a
+  comul_eq_tmul_self : comul a = a ⊗ₜ[R] a
 
 attribute [simp] IsGroupLikeElem.counit_eq_one IsGroupLikeElem.comul_eq_tmul_self
 
@@ -77,7 +78,7 @@ lemma val_injective : Injective (val : GroupLike R A → A) := by rintro ⟨a, h
   val_injective.eq_iff
 
 /-- Identity equivalence between `GroupLike R A` and `{a : A | IsGroupLikeElem R a}`. -/
-def valEquiv : GroupLike R A ≃ {a : A | IsGroupLikeElem R a} where
+def valEquiv : GroupLike R A ≃ Subtype (IsGroupLikeElem R : A → Prop) where
   toFun a := ⟨a.1, a.2⟩
   invFun a := ⟨a.1, a.2⟩
   left_inv _ := rfl

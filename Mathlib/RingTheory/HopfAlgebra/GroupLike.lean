@@ -27,6 +27,18 @@ variable [CommSemiring R] [Semiring A] [HopfAlgebra R A] {a b : A}
     a * antipode R a = 1 := by
   simpa [ha, -mul_antipode_lTensor_comul_apply] using mul_antipode_lTensor_comul_apply (R := R) a
 
+variable (R) in
+/-- Turn a group-like element `a` into a unit with inverse its antipode. -/
+@[simps]
+def Units.ofIsGroupLikeElem (a : A) (ha : IsGroupLikeElem R a) : Aˣ where
+  val := a
+  inv := antipode R a
+  val_inv := ha.mul_antipode_cancel
+  inv_val := ha.antipode_mul_cancel
+
+lemma IsGroupLikeElem.isUnit (ha : IsGroupLikeElem R a) : IsUnit a :=
+  ⟨.ofIsGroupLikeElem R a ha, rfl⟩
+
 @[simp] protected lemma IsGroupLikeElem.antipode (ha : IsGroupLikeElem R a) :
     IsGroupLikeElem R (antipode R a) :=
   ha.of_mul_eq_one ha.mul_antipode_cancel ha.antipode_mul_cancel
