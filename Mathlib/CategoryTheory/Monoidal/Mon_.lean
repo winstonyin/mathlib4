@@ -85,8 +85,7 @@ attribute [mon_tauto] Category.id_comp Category.comp_id Category.assoc
   leftUnitor_tensor leftUnitor_tensor_assoc leftUnitor_tensor_inv leftUnitor_tensor_inv_assoc
   rightUnitor_tensor rightUnitor_tensor_assoc rightUnitor_tensor_inv rightUnitor_tensor_inv_assoc
 
-@[mon_tauto] lemma whiskerLeft_def (X : C) (f : Y ⟶ Z) : X ◁ f = 𝟙 X ⊗ₘ f := by simp
-@[mon_tauto] lemma whiskerRight_def (f : X ⟶ Y) (Z : C) : f ▷ Z = f ⊗ₘ 𝟙 Z := by simp
+attribute [mon_tauto ←] tensorHom_id id_tensorHom tensor_comp tensor_comp_assoc
 
 @[reassoc (attr := mon_tauto)]
 lemma associator_hom_comp_tensorHom_tensorHom (f : X₁ ⟶ X₂) (g : Y₁ ⟶ Y₂) (h : Z₁ ⟶ Z₂) :
@@ -107,10 +106,6 @@ lemma associator_inv_comp_tensorHom_tensorHom_comp (f : X₁ ⟶ X₂) (g : Y₁
     (fg : X₂ ⊗ Y₂ ⟶ W) :
     (α_ X₁ Y₁ Z₁).inv ≫ (((f ⊗ₘ g) ≫ fg) ⊗ₘ h) =
       (f ⊗ₘ g ⊗ₘ h) ≫ (α_ X₂ Y₂ Z₂).inv ≫ (fg ⊗ₘ 𝟙 _) := by simp [tensorHom_def']
-
-@[reassoc (attr := mon_tauto)]
-lemma tensorHom_comp_tensorHom (f₁ : X₁ ⟶ X₂) (g₁ : Y₁ ⟶ Y₂) (f₂ : X₂ ⟶ X₃) (g₂ : Y₂ ⟶ Y₃) :
-    (f₁ ⊗ₘ g₁) ≫ (f₂ ⊗ₘ g₂) = (f₁ ≫ f₂) ⊗ₘ (g₁ ≫ g₂) := by simp
 
 @[mon_tauto] lemma eq_one_mul : (λ_ M).hom = (η ⊗ₘ 𝟙 M) ≫ μ := by simp
 @[mon_tauto] lemma eq_mul_one : (ρ_ M).hom = (𝟙 M ⊗ₘ η) ≫ μ := by simp
